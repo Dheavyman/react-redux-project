@@ -54,7 +54,7 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   courses: state.courses
 });
 
