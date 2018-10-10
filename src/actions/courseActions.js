@@ -17,6 +17,11 @@ export const updateCourseSuccess = course => ({
   course
 });
 
+export const deleteCourseSuccess = courseId => ({
+  type: actionTypes.DELETE_COURSE_SUCCESS,
+  courseId
+});
+
 export const loadCourses = () => (dispatch) => {
   dispatch(beginAjaxCall());
   return courseApi.getAllCourses()
@@ -37,6 +42,16 @@ export const saveCourse = course => (dispatch) => {
     })
     .catch(error => {
       dispatch(ajaxCallError(error));
+      throw(error);
+    });
+};
+
+export const deleteCourse = courseId => (dispatch) => {
+  return courseApi.deleteCourse(courseId)
+    .then(() => {
+      dispatch(deleteCourseSuccess(courseId));
+    })
+    .catch(error => {
       throw(error);
     });
 };

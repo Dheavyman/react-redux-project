@@ -15,8 +15,11 @@ describe('Manage course page', () => {
       length: '',
       category: ''
     },
+    router: {
+      setRouteLeaveHook: () => Promise.resolve
+    },
     actions: {
-      saveCourse: () => { return Promise.resolve(); }
+      saveCourse: () => Promise.resolve()
     }
   };
   it('should set error message when trying to save empty title', () => {
