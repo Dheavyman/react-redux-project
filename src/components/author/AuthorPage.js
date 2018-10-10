@@ -46,7 +46,17 @@ class AuthorPage extends React.Component {
           className="btn btn-primary"
           onClick={this.redirectToAddAuthorPage}
         />
-        <AuthorList authors={authors} onDelete={this.deleteAuthor} />
+        {authors.length > 0
+        ? <AuthorList authors={authors} onDelete={this.deleteAuthor} />
+        : (
+          <div>
+            <br />
+            <h4>
+              No author added yet. Click on add author button to add new author.
+            </h4>
+          </div>
+          )
+        }
       </div>
     );
   }
