@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
+import toastr from 'toastr';
 
 import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 import { authorsFormattedForDropdown } from '../../selectors/selectors';
-import toastr from 'toastr';
 
 export class ManageCoursePage extends React.Component {
   constructor(props, context) {
@@ -13,10 +14,19 @@ export class ManageCoursePage extends React.Component {
     this.state = {
       course: Object.assign({}, this.props.course),
       errors: {},
-      saving: false
+      saving: false,
+      hasUnsavedChanges: false
     };
     this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourse = this.saveCourse.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.router.setRouteLeaveHook(this.props.route, () => {
+      if (this.state.hasUnsavedChanges) {
+        return 'You have unsaved changes, are you sure you want to leave?';
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,7 +43,8 @@ export class ManageCoursePage extends React.Component {
     course[field] = event.target.value;
 
     return this.setState({
-      course
+      course,
+      hasUnsavedChanges: true
     });
   }
 
@@ -60,7 +71,10 @@ export class ManageCoursePage extends React.Component {
     this.setState({ saving: true });
     this.props.actions.saveCourse(this.state.course)
       .then(() => {
-        this.setState({ saving: false });
+        this.setState({
+          saving: false,
+          hasUnsavedChanges: false
+        });
         toastr.success('Course saved successfully');
         this.context.router.push('/courses');
       })
@@ -87,7 +101,9 @@ export class ManageCoursePage extends React.Component {
 ManageCoursePage.propTypes = {
   course: PropTypes.object.isRequired,
   authors: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired
 };
 
 ManageCoursePage.contextTypes = {
@@ -119,4 +135,5 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(courseActions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withRouter(ManageCoursePage));

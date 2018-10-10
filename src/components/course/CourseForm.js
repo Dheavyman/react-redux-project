@@ -15,7 +15,7 @@ const CourseForm = props => {
 
   return (
     <form>
-      <h2>Manage Course</h2>
+      <h2>{course.id ? 'Edit Course' : 'Add Course'}</h2>
       <TextInput
         name="title"
         label="Title"
