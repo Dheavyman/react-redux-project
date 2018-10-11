@@ -6,6 +6,7 @@ import toastr from 'toastr';
 
 import CourseList from './CourseList';
 import * as courseActions from '../../actions/courseActions';
+import { sortByTitleAscending }from '../../selectors/selectors';
 
 /**
  * Course page component
@@ -74,15 +75,7 @@ CoursesPage.propTypes = {
 
 const mapStateToProps = state => {
   const courses = [...state.courses];
-  courses.sort((first, second) => {
-    if (first.title < second.title) {
-      return -1;
-    }
-    if (first.title > second.title) {
-      return 1;
-    }
-    return 0;
-  });
+  courses.sort(sortByTitleAscending);
 
   return {
     courses

@@ -10,12 +10,20 @@ const CourseForm = props => {
     onSave,
     onChange,
     saving,
-    errors
+    errors,
+    routeParams
   } = props;
 
   return (
     <form>
-      <h2>{course.id ? 'Edit Course' : 'Add Course'}</h2>
+      <h2>
+        {!routeParams.id
+        ? 'Add course'
+        : course.id === routeParams.id
+        ? 'Edit course'
+        : 'Course not found, add new course'
+        }
+      </h2>
       <TextInput
         name="title"
         label="Title"
@@ -63,7 +71,8 @@ CourseForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  routeParams: PropTypes.object
 };
 
 export default CourseForm;

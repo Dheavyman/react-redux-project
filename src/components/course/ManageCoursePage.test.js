@@ -18,6 +18,7 @@ describe('Manage course page', () => {
     router: {
       setRouteLeaveHook: () => Promise.resolve
     },
+    routeParams: {},
     actions: {
       saveCourse: () => Promise.resolve()
     }

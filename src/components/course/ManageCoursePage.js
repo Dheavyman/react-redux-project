@@ -106,6 +106,7 @@ export class ManageCoursePage extends React.Component {
         onChange={this.updateCourseState}
         onSave={this.saveCourse}
         saving={this.state.saving}
+        routeParams={this.props.routeParams}
       />
     );
   }
@@ -116,7 +117,8 @@ ManageCoursePage.propTypes = {
   authors: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   router: PropTypes.object.isRequired,
-  route: PropTypes.object.isRequired
+  route: PropTypes.object.isRequired,
+  routeParams: PropTypes.object
 };
 
 ManageCoursePage.contextTypes = {
@@ -133,8 +135,9 @@ const mapStateToProps = (state, ownProps) => {
     duration: '',
     category: ''
   };
+  const courseExist = state.courses.some(course => course.id === courseId);
 
-  if (courseId && state.courses.length > 0) {
+  if (courseId && courseExist) {
     course = state.courses.find(course => course.id === courseId);
   }
 
