@@ -72,9 +72,22 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  courses: state.courses
-});
+const mapStateToProps = state => {
+  const courses = [...state.courses];
+  courses.sort((first, second) => {
+    if (first.title < second.title) {
+      return -1;
+    }
+    if (first.title > second.title) {
+      return 1;
+    }
+    return 0;
+  });
+
+  return {
+    courses
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(courseActions, dispatch)
