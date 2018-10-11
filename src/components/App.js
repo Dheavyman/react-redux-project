@@ -17,9 +17,11 @@ class App extends React.Component {
    * @memberof App
    */
   render() {
+    const { courses } = this.props;
+
     return (
       <div className="container-fluid">
-        <Header loading={this.props.loading} />
+        <Header loading={this.props.loading} courses={courses} />
         {this.props.children}
       </div>
     );
@@ -28,10 +30,12 @@ class App extends React.Component {
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
+  courses: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
+  courses: state.courses,
   loading: state.numAjaxCallsInProgress > 0
 });
 

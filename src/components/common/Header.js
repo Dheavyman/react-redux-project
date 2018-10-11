@@ -8,12 +8,14 @@ import LoadingDots from './LoadingDots';
  *
  * @returns {object} React element
  */
-const Header = ({loading}) => {
+const Header = ({courses, loading}) => {
   return (
     <nav>
       <IndexLink to="/" activeClassName="active">Home</IndexLink>
       {" | "}
-      <Link to="/courses" activeClassName="active">Courses</Link>
+      <Link to="/courses" activeClassName="active">
+        Courses [{courses.length}]
+      </Link>
       {" | "}
       <Link to="/authors" activeClassName="active">Authors</Link>
       {" | "}
@@ -24,6 +26,7 @@ const Header = ({loading}) => {
 };
 
 Header.propTypes = {
+  courses: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired
 };
 

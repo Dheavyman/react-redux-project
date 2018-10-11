@@ -56,6 +56,19 @@ export class ManageCoursePage extends React.Component {
       errors.title = 'Title must be at least 5 characters.';
       formIsValid = false;
     }
+    if (this.state.course.authorId.length < 1) {
+      errors.authorId = 'Select an author.';
+      formIsValid = false;
+    }
+    if (this.state.course.category.length < 1) {
+      errors.category = "Category cannot be empty.";
+      formIsValid = false;
+    }
+    if (!/^[0-9]+(:+[0-9]{2}){1,2}$/.test(this.state.course.duration)) {
+      errors.duration = 'Length must contain only numbers and colon and ' +
+        'be in the format hh:mm:ss or mm:ss';
+      formIsValid = false;
+    }
 
     this.setState({ errors });
     return formIsValid;
@@ -117,7 +130,7 @@ const mapStateToProps = (state, ownProps) => {
     watchHref: '',
     title: '',
     authorId: '',
-    length: '',
+    duration: '',
     category: ''
   };
 

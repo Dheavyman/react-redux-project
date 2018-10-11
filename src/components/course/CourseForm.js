@@ -40,11 +40,11 @@ const CourseForm = props => {
         error={errors.category}
       />
       <TextInput
-        name="length"
-        label="Length"
-        value={course.length}
+        name="duration"
+        label="Duration"
+        value={course.duration}
         onChange={onChange}
-        error={errors.length}
+        error={errors.duration}
       />
       <input
         type="submit"

@@ -10,7 +10,7 @@ const CourseList = ({courses, onDelete}) => {
           <th>Title</th>
           <th>Author</th>
           <th>Category</th>
-          <th>Length</th>
+          <th>Duration</th>
           <th></th>
         </tr>
       </thead>

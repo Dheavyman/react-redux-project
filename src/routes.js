@@ -8,6 +8,7 @@ import CoursesPage from './components/course/CoursesPage';
 import ManageCoursePage from './components/course/ManageCoursePage'; // eslint-disable-line import/no-named-as-default
 import AuthorPage from './components/author/AuthorPage';
 import ManageAuthorPage from './components/author/ManageAuthorPage';
+import NotFoundPage from './components/common/NotFoundPage';
 
 export default (
   <Route path="/" component={App}>
@@ -19,5 +20,6 @@ export default (
     <Route path="author" component={ManageAuthorPage} />
     <Route path="author/:id" component={ManageAuthorPage} />
     <Route path="about" component={AboutPage} />
+    <Route path="*" component={NotFoundPage} />
   </Route>
 );

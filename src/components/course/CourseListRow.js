@@ -12,7 +12,7 @@ const CourseListRow = ({course, onDelete}) => {
       <td><Link to={'/course/' + course.id}>{course.title}</Link></td>
       <td>{course.authorId}</td>
       <td>{course.category}</td>
-      <td>{course.length}</td>
+      <td>{course.duration}</td>
       <td>
         <button
           type="button"
