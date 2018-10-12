@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import toastr from 'toastr';
 
 import CourseList from './CourseList';
+import Pagination from '../common/Pagination';
 import * as courseActions from '../../actions/courseActions';
 import { sortByTitleAscending }from '../../selectors/selectors';
 
@@ -17,8 +18,12 @@ import { sortByTitleAscending }from '../../selectors/selectors';
 class CoursesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      pageCourses: []
+    };
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     this.deleteCourse = this.deleteCourse.bind(this);
+    this.onPageChange = this.onPageChange.bind(this);
   }
 
   redirectToAddCoursePage() {
@@ -35,6 +40,10 @@ class CoursesPage extends React.Component {
       });
   }
 
+  onPageChange(pageCourses) {
+    this.setState({ pageCourses });
+  }
+
   /**
    * Render method
    *
@@ -42,7 +51,8 @@ class CoursesPage extends React.Component {
    * @memberof CoursesPage
    */
   render() {
-    const { courses } =  this.props;
+    const { pageCourses } = this.state;
+
     return (
       <div>
         <h1>Courses</h1>
@@ -52,8 +62,8 @@ class CoursesPage extends React.Component {
           className="btn btn-primary"
           onClick={this.redirectToAddCoursePage}
         />
-        {courses.length > 0
-        ? <CourseList courses={courses} onDelete={this.deleteCourse} />
+        {pageCourses.length > 0
+        ? <CourseList courses={pageCourses} onDelete={this.deleteCourse} />
         : (
           <div>
             <br />
@@ -63,6 +73,12 @@ class CoursesPage extends React.Component {
           </div>
           )
         }
+        <Pagination
+          items={this.props.courses}
+          currentPage={1}
+          itemsPerPage={3}
+          onPageChange={this.onPageChange}
+        />
       </div>
     );
   }
