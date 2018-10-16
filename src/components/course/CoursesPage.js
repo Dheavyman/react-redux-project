@@ -76,7 +76,7 @@ class CoursesPage extends React.Component {
         <Pagination
           items={this.props.courses}
           currentPage={1}
-          itemsPerPage={3}
+          itemsPerPage={2}
           onPageChange={this.onPageChange}
         />
       </div>

@@ -64,9 +64,9 @@ export class ManageCoursePage extends React.Component {
       errors.category = "Category cannot be empty.";
       formIsValid = false;
     }
-    if (!/^[0-9]+(:+[0-9]{2}){1,2}$/.test(this.state.course.duration)) {
-      errors.duration = 'Length must contain only numbers and colon and ' +
-        'be in the format hh:mm:ss or mm:ss';
+    if (!/^[0-9]+(?:(:[0-5][0-9])){1,2}$/.test(this.state.course.duration)) {
+      errors.duration = 'Duration must contain only numbers and colon with ' +
+        'appropriate time values in the format hh:mm:ss or mm:ss ';
       formIsValid = false;
     }
 
