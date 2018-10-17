@@ -13,10 +13,13 @@
     "test:watch": "npm run test -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
-    "build:html": "babel-node tools/buildHtml.js",
-    "prebuild": "npm-run-all clean-dist test lint build:html",
-    "build": "babel-node tools/build.js",
-    "postbuild": "babel-node tools/distServer.js"
+    "heroku-postbuild": "npm-run-all clean-dist build:html build:tools build:server",
+    "build:html": "babel ./tools/buildHtml.js --out-file ./dist/buildHtml.js",
+    "build:tools": "babel ./tools/build.js --out-file ./dist/build.js",
+    "build:server": "babel ./tools/distServer.js --out-file ./dist/distServer.js",
+    "preserve": "node ./dist/buildHtml.js",
+    "serve": "node ./dist/build.js",
+    "postserve": "node ./dist/distServer.js"
   },
   "dependencies": {
     "babel-polyfill": "6.8.0",
@@ -84,5 +87,8 @@
   "bugs": {
     "url": "https://github.com/Dheavyman/react-redux-project/issues"
   },
-  "homepage": "https://github.com/Dheavyman/react-redux-project#readme"
+  "homepage": "https://github.com/Dheavyman/react-redux-project#readme",
+  "engines": {
+    "node": "8.9.0"
+  }
 }
