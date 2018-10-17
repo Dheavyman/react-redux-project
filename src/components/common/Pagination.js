@@ -1,6 +1,19 @@
 import React, { PropTypes } from 'react';
 
+/**
+ * Pagination component
+ *
+ * @class Pagination
+ * @extends {React.Component}
+ */
 class Pagination extends React.Component {
+  /**
+   *Creates an instance of Pagination.
+   *
+   * @param {object} props - Properties passed to component
+   * @param {object} context - Context passed to component
+   * @memberof Pagination
+   */
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -10,6 +23,11 @@ class Pagination extends React.Component {
     this.handlePageChange = this.handlePageChange.bind(this);
   }
 
+  /**
+   * Component will mount life cycle method
+   *
+   * @memberof Pagination
+   */
   componentWillMount() {
     const {
       currentPage,
@@ -21,12 +39,23 @@ class Pagination extends React.Component {
     }), this.getPageItems);
   }
 
+  /**
+   * Component did update life cycle method
+   *
+   * @param {object} prevProps - Previous properties passed to component
+   * @memberof Pagination
+   */
   componentDidUpdate(prevProps) {
     if (this.props.items !== prevProps.items) {
       this.getPageItems();
     }
   }
 
+  /**
+   * Get page items
+   *
+   * @memberof Pagination
+   */
   getPageItems() {
     const { currentPage, itemsPerPage } = this.state;
     const { items, onPageChange } = this.props;
@@ -46,6 +75,12 @@ class Pagination extends React.Component {
     onPageChange(pageItems);
   }
 
+  /**
+   * Get page numbers
+   *
+   * @returns {array} Page numbers
+   * @memberof Pagination
+   */
   getPageNumbers() {
     const { items } = this.props;
     const { currentPage, itemsPerPage } = this.state;
@@ -70,6 +105,12 @@ class Pagination extends React.Component {
     return pageNumbers;
   }
 
+  /**
+   * Handle page change event handler
+   *
+   * @param {object} event - Event object
+   * @memberof Pagination
+   */
   handlePageChange(event) {
     event.preventDefault();
     const { text } = event.target;
@@ -89,6 +130,12 @@ class Pagination extends React.Component {
     }
   }
 
+  /**
+   * Render pagination component
+   *
+   * @returns {object} React element
+   * @memberof Pagination
+   */
   renderPaginationComponent() {
     const { currentPage } = this.state;
 
@@ -129,6 +176,12 @@ class Pagination extends React.Component {
     );
   }
 
+  /**
+   * Render method
+   *
+   * @returns {object} React element
+   * @memberof Pagination
+   */
   render() {
 
     return (

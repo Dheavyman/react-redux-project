@@ -3,6 +3,12 @@ import React, { PropTypes } from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
+/**
+ * Course form component
+ *
+ * @param {object} props - Properties passed to component
+ * @returns {object} React element
+ */
 const CourseForm = props => {
   const {
     course,

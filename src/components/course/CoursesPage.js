@@ -16,6 +16,13 @@ import { sortByTitleAscending }from '../../selectors/selectors';
  * @extends {React.Component}
  */
 class CoursesPage extends React.Component {
+  /**
+   *Creates an instance of CoursesPage.
+   *
+   * @param {object} props - Properties passed to component
+   * @param {object} context - Context passed to component
+   * @memberof CoursesPage
+   */
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -26,10 +33,21 @@ class CoursesPage extends React.Component {
     this.onPageChange = this.onPageChange.bind(this);
   }
 
+  /**
+   * Redirect to add course page
+   *
+   * @memberof CoursesPage
+   */
   redirectToAddCoursePage() {
     browserHistory.push('/course');
   }
 
+  /**
+   * Delete course
+   *
+   * @param {number} courseId - Id of the course
+   * @memberof CoursesPage
+   */
   deleteCourse(courseId) {
     this.props.actions.deleteCourse(courseId)
       .then(() => {
@@ -40,6 +58,12 @@ class CoursesPage extends React.Component {
       });
   }
 
+  /**
+   * Page change handler
+   *
+   * @param {array} pageCourses - Courses in a page
+   * @memberof CoursesPage
+   */
   onPageChange(pageCourses) {
     this.setState({ pageCourses });
   }
@@ -89,6 +113,12 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+/**
+ * Map state to props
+ *
+ * @param {object} state - State
+ * @returns {object} Object mapped to props
+ */
 const mapStateToProps = state => {
   const courses = [...state.courses];
   courses.sort(sortByTitleAscending);
@@ -98,6 +128,12 @@ const mapStateToProps = state => {
   };
 };
 
+/**
+ * Map dispatch to props
+ *
+ * @param {func} dispatch - Dispatch
+ * @returns {object} Actions
+ */
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(courseActions, dispatch)
 });

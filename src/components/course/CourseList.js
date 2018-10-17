@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react';
 import CourseListRow from './CourseListRow';
 
+/**
+ * Course list component
+ *
+ * @param {array} courses - Courses
+ * @param {func} onDelete - On delete handler
+ * @returns {object} React element
+ */
 const CourseList = ({courses, onDelete}) => {
   return (
     <table className="table">

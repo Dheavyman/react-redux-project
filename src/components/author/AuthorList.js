@@ -2,6 +2,13 @@ import React, { PropTypes } from 'react';
 
 import AuthorListRow from './AuthorListRow';
 
+/**
+ * Author list component
+ *
+ * @param {array} authors - Authors
+ * @param {func} onDelete - On delete handler
+ * @returns {object} React element
+ */
 const AuthorList = ({authors, onDelete}) => (
   <table className="table">
     <thead>

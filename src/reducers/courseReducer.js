@@ -1,6 +1,13 @@
 import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
 
+/**
+ * Course reducer
+ *
+ * @param {array} [state=initialState.courses] - Course
+ * @param {object} action - Action object
+ * @returns {array} New state
+ */
 const courseReducer = (state = initialState.courses, action) => {
   switch(action.type) {
     case actionTypes.LOAD_COURSES_SUCCESS:

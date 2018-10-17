@@ -1,5 +1,11 @@
 import React, { PropTypes } from 'react';
 
+/**
+ * Select input component
+ *
+ * @param {object} props - Properties passed to component
+ * @returns {object} React element
+ */
 const SelectInput = props => {
   const {
     name,

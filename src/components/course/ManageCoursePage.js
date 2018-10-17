@@ -8,6 +8,13 @@ import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 import { authorsFormattedForDropdown } from '../../selectors/selectors';
 
+/**
+ * Manage course page component
+ *
+ * @export ManageCoursePage
+ * @class ManageCoursePage
+ * @extends {React.Component}
+ */
 export class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -21,6 +28,11 @@ export class ManageCoursePage extends React.Component {
     this.saveCourse = this.saveCourse.bind(this);
   }
 
+  /**
+   * Component did mount life cycle method
+   *
+   * @memberof ManageCoursePage
+   */
   componentDidMount() {
     this.props.router.setRouteLeaveHook(this.props.route, () => {
       if (this.state.hasUnsavedChanges) {
@@ -29,6 +41,12 @@ export class ManageCoursePage extends React.Component {
     });
   }
 
+  /**
+   * Component will receive props life cycle method
+   *
+   * @param {object} nextProps - Next properties passed to component
+   * @memberof ManageCoursePage
+   */
   componentWillReceiveProps(nextProps) {
     if (this.props.course.id != nextProps.course.id) {
       this.setState({
@@ -37,6 +55,13 @@ export class ManageCoursePage extends React.Component {
     }
   }
 
+  /**
+   * Update course state event handler
+   *
+   * @param {object} event - Event object
+   * @returns {object} New state
+   * @memberof ManageCoursePage
+   */
   updateCourseState(event) {
     const field = event.target.name;
     let course = Object.assign({}, this.state.course);
@@ -48,6 +73,12 @@ export class ManageCoursePage extends React.Component {
     });
   }
 
+  /**
+   * Check if course form is valid
+   *
+   * @returns {boolean} True or false
+   * @memberof ManageCoursePage
+   */
   courseFormIsValid() {
     let formIsValid = true;
     let errors = {};
@@ -74,6 +105,13 @@ export class ManageCoursePage extends React.Component {
     return formIsValid;
   }
 
+  /**
+   * Save course event handler
+   *
+   * @param {object} event - Event object
+   * @returns {any}
+   * @memberof ManageCoursePage
+   */
   saveCourse(event) {
     event.preventDefault();
 
@@ -97,6 +135,12 @@ export class ManageCoursePage extends React.Component {
       });
   }
 
+  /**
+   * Render method
+   *
+   * @returns {object} React element
+   * @memberof ManageCoursePage
+   */
   render() {
     return (
       <CourseForm
@@ -125,6 +169,13 @@ ManageCoursePage.contextTypes = {
   router: PropTypes.object
 };
 
+/**
+ * Map state to props
+ *
+ * @param {object} state - State
+ * @param {object} ownProps - Own properties
+ * @returns {object} Object mapped to props
+ */
 const mapStateToProps = (state, ownProps) => {
   const courseId = ownProps.params.id;
   let course = {
@@ -147,6 +198,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+/**
+ * Map dispatch to props
+ *
+ * @param {func} dispatch - Dispatch
+ * @returns {object} Actions
+ */
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(courseActions, dispatch)
 });

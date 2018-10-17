@@ -2,6 +2,12 @@ import React, { PropTypes } from 'react';
 
 import TextInput from '../common/TextInput';
 
+/**
+ * Author form component
+ *
+ * @param {object} props - Properties passed to component
+ * @returns {object} React element
+ */
 const AuthorForm = props => {
   const {
     author,

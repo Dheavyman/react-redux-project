@@ -7,7 +7,20 @@ import toastr from 'toastr';
 import AuthorForm from './AuthorForm';
 import * as authorActions from '../../actions/authorActions';
 
+/**
+ * Manage author page component
+ *
+ * @class ManageAuthorPage
+ * @extends {React.Component}
+ */
 class ManageAuthorPage extends React.Component {
+  /**
+   *Creates an instance of ManageAuthorPage.
+   *
+   * @param {object} props - Properties passed to component
+   * @param {object} context - Context passed to component
+   * @memberof ManageAuthorPage
+   */
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -20,6 +33,11 @@ class ManageAuthorPage extends React.Component {
     this.saveAuthor = this.saveAuthor.bind(this);
   }
 
+  /**
+   * Component did mount life cycle method
+   *
+   * @memberof ManageAuthorPage
+   */
   componentDidMount() {
     this.props.router.setRouteLeaveHook(this.props.route, () => {
       if (this.state.hasUnsavedChanges) {
@@ -28,6 +46,13 @@ class ManageAuthorPage extends React.Component {
     });
   }
 
+  /**
+   * Update author state
+   *
+   * @param {object} event - Event object
+   * @returns {object} New state
+   * @memberof ManageAuthorPage
+   */
   updateAuthorState(event) {
     const field = event.target.name;
     let author = Object.assign({}, this.state.author);
@@ -39,6 +64,12 @@ class ManageAuthorPage extends React.Component {
     });
   }
 
+  /**
+   * Check if author form has valid inputs
+   *
+   * @returns {boolean} True or false
+   * @memberof ManageAuthorPage
+   */
   authorFormIsValid() {
     let formIsValid = true;
     let errors = {};
@@ -56,6 +87,12 @@ class ManageAuthorPage extends React.Component {
     return formIsValid;
   }
 
+  /**
+   * Save an author
+   *
+   * @param {object} event - Event object
+   * @memberof ManageAuthorPage
+   */
   saveAuthor(event) {
     event.preventDefault();
 
@@ -79,6 +116,12 @@ class ManageAuthorPage extends React.Component {
       });
   }
 
+  /**
+   * Render method
+   *
+   * @returns {object} React element
+   * @memberof ManageAuthorPage
+   */
   render() {
     const { author, saving, errors } = this.state;
     return (
@@ -104,6 +147,13 @@ ManageAuthorPage.contextTypes = {
   router: PropTypes.object
 };
 
+/**
+ * Map state to props
+ *
+ * @param {object} state - State
+ * @param {object} ownProps - Own properties
+ * @returns {object} Object mapped to props
+ */
 const mapStateToProps = (state, ownProps) => {
   const authorId = ownProps.params.id;
   let author = {
@@ -121,6 +171,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+/**
+ * Map dispatch to props
+ *
+ * @param {func} dispatch - Dispatch
+ * @returns {object} Actions
+ */
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(authorActions, dispatch)
 });

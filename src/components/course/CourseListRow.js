@@ -1,7 +1,18 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+/**
+ * Course list row component
+ *
+ * @param {object} course - Course
+ * @param {func} onDelete - On delete handler
+ * @returns
+ */
 const CourseListRow = ({course, onDelete}) => {
+  /**
+   * Delete course event handler
+   *
+   */
   const deleteCourse = () => (
     onDelete(course.id)
   );

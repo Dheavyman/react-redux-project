@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+/**
+ * Author list row component
+ *
+ * @param {object} author - Author
+ * @param {func} onDelete - On delete handler
+ * @returns {object} React element
+ */
 const AuthorListRow = ({author, onDelete}) => {
   const deleteAuthor = () => (
     onDelete(author.id)
