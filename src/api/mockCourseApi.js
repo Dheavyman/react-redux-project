@@ -9,7 +9,7 @@ const courses = [
     title: "Building Applications in React and Flux",
     watchHref: "http://www.pluralsight.com/courses/react-flux-building-applications",
     authorId: "cory-house",
-    length: "5:08",
+    duration: "5:08",
     category: "JavaScript"
   },
   {
@@ -17,7 +17,7 @@ const courses = [
     title: "Clean Code: Writing Code for Humans",
     watchHref: "http://www.pluralsight.com/courses/writing-clean-code-humans",
     authorId: "cory-house",
-    length: "3:10",
+    duration: "3:10",
     category: "Software Practices"
   },
   {
@@ -25,7 +25,7 @@ const courses = [
     title: "Architecting Applications for the Real World",
     watchHref: "http://www.pluralsight.com/courses/architecting-applications-dotnet",
     authorId: "cory-house",
-    length: "2:52",
+    duration: "2:52",
     category: "Software Architecture"
   },
   {
@@ -33,7 +33,7 @@ const courses = [
     title: "Becoming an Outlier: Reprogramming the Developer Mind",
     watchHref: "http://www.pluralsight.com/courses/career-reboot-for-developer-mind",
     authorId: "cory-house",
-    length: "2:30",
+    duration: "2:30",
     category: "Career"
   },
   {
@@ -41,7 +41,7 @@ const courses = [
     title: "Web Component Fundamentals",
     watchHref: "http://www.pluralsight.com/courses/web-components-shadow-dom",
     authorId: "cory-house",
-    length: "5:10",
+    duration: "5:10",
     category: "HTML5"
   }
 ];

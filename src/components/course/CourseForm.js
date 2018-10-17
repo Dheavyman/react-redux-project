@@ -3,6 +3,12 @@ import React, { PropTypes } from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
+/**
+ * Course form component
+ *
+ * @param {object} props - Properties passed to component
+ * @returns {object} React element
+ */
 const CourseForm = props => {
   const {
     course,
@@ -10,12 +16,20 @@ const CourseForm = props => {
     onSave,
     onChange,
     saving,
-    errors
+    errors,
+    routeParams
   } = props;
 
   return (
     <form>
-      <h2>Manage Course</h2>
+      <h2>
+        {!routeParams.id
+        ? 'Add course'
+        : course.id === routeParams.id
+        ? 'Edit course'
+        : 'Course not found, add new course'
+        }
+      </h2>
       <TextInput
         name="title"
         label="Title"
@@ -40,11 +54,11 @@ const CourseForm = props => {
         error={errors.category}
       />
       <TextInput
-        name="length"
-        label="Length"
-        value={course.length}
+        name="duration"
+        label="Duration"
+        value={course.duration}
         onChange={onChange}
-        error={errors.length}
+        error={errors.duration}
       />
       <input
         type="submit"
@@ -63,7 +77,8 @@ CourseForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  routeParams: PropTypes.object
 };
 
 export default CourseForm;

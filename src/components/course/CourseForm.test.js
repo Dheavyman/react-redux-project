@@ -9,6 +9,7 @@ const setup = (saving) => {
     course: {},
     saving: saving,
     errors: {},
+    routeParams: {},
     onSave: () => {},
     onChange: () => {}
   };
@@ -21,7 +22,7 @@ describe('Test course form', () => {
     const wrapper = setup(false);
 
     expect(wrapper.find('form').length).toBe(1);
-    expect(wrapper.find('h2').text()).toEqual('Manage Course');
+    expect(wrapper.find('h2').text()).toEqual('Add course');
   });
 
   it('should have save button labelled "Save" when not saving', () => {
